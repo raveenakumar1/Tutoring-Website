@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // JavaScript to redirect to homepage or dashboard
+        function handleCancel() {
+            // Check if the user is logged in (you can change this logic based on your authentication system)
+            const isLoggedIn = false; // Change this condition based on actual login status (e.g., check local storage or session)
+
+            if (isLoggedIn) {
+                window.location.href = '/dashboard'; // Redirect to dashboard if logged in
+            } else {
+                window.location.href = '/home'; // Redirect to homepage if not logged in
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="checkout-form">
+        <div class="form">
+            <form>
+                <label for="subject">Subject</label>
+                <select id="options">
+                    <option value="1">Grade 11 Physics</option>
+                    <option value="2">Optics & Waves</option>
+                    <option value="3">Grade 12 Physics</option>
+                    <!-- More options here -->
+                </select>
+
+                <label for="consultation-dates">Enter three dates and times for when you're available
+                    for a free 15-minute virtual consultation.</label>
+                <input type="date" id="first-date" name="first-date" required>
+                <input type="time" id="first-time" name="first-time" required>
+                <input type="date" id="second-date" name="second-date" required>
+                <input type="time" id="second-time" name="second-time" required>
+                <input type="date" id="third-date" name="third-date" required>
+                <input type="time" id="third-time" name="third-time" required>
+
+                <section class="extra-information">
+                    <label for="extra-information">
+                        Extra Information (optional, but highly encouraged!)
+                    </label>
+
+                    <label for="meeting-frequency">How often would you like to meet per week?</label>
+                    <input type="number" name="frequency" id="frequency" placeholder="Choose a number" min="1" max="3">
+
+                    <label for="lesson-length">How long would you like your lessons (Example: If you would like it to 
+                        be an hour long, choose 1. If you like it to be an hour and a half long, choose 1.5)
+                    </label>
+                    <input type="number" min="0.5" max="4" step="0.5" placeholder="Choose a number">
+
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <label for="fileUpload">Upload your Course Outline/Syllabus</label>
+                        <input type="file" id="fileUpload" name="fileUpload">
+                    </form>
+
+                    <label for="additonal-information">Enter any additional information your Tutor
+                        should know (e.g., any upcoming exams/evaluations, difficulty
+                        in certain units compared to others, preferred learning styles, etc.)
+                    </label>
+                    <input type="text" name="information" id="information" maxlength="700">
+                    <label class="checkbox">
+                        <input type="checkbox" name="terms" id="terms" required> I have read and agree to the <a href="#">terms and conditions</a>. 
+                    </label>
+                    <button class="button" type="submit">CONFIRM BOOKING</button>
+                    <button class="button cancel" type="button" onclick="handleCancel()">CANCEL</button>
+                </section>
+
+            </form>
+        </div>
+
+        <div class="tutor-section">
+            <div class="tutor-image">
+            </div>
+            <h3>Raveena Kumar</h3>
+            <p>$25 CAD/hour</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente molestiae repellendus quos labore rem nihil 
+                officiis omnis est quibusdam, sint doloribus distinctio 
+                deserunt similique impedit debitis vitae maiores quaerat harum.</p>
+            <button class="button">LEARN MORE</button>
+        </div>
+    </div>
+</body>
+</html>
