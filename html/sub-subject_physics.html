@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub-Subject Physics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body styling */
+body {
+    background-color: #f0f4f8;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background-color: #007bff;
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+/* Subjects Section */
+.subjects {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height to center vertically */
+}
+
+/* Heading within subjects */
+.subjects h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Buttons container */
+.subject-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap if screen is small */
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Individual button styling */
+.subject-buttons button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 200px; /* Fixed width for consistency */
+}
+
+/* Button hover effect */
+.subject-buttons button:hover {
+    background-color: #218838;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .subject-buttons {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+    }
+
+    .subject-buttons button {
+        width: 100%; /* Make buttons stretch across the screen */
+        font-size: 16px; /* Slightly smaller font size on smaller screens */
+    }
+}
+
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li> <!-- Fixed unclosed <a> tag -->
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="subjects">
+        <h2>PICK A SUB-SUBJECT</h2>
+        <div class="subject-buttons">
+            <button class="one">Grade 11 Physics</button>
+            <button class="two">Optics & Waves</button>
+            <button class="three">Grade 12 Physics</button>
+            <button class="four">Thermodynamics</button>
+            <button class="five">Electromagnetism</button>
+            <button class="six">Classical Mechanics</button>
+        </div>
+    </section>
+    
+</body>
+</html>

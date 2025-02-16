@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub-Subject English</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Reset some default styles for consistent look across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and general page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation styling */
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+/* Section for picking sub-subject */
+.subjects {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.subjects h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Styling for subject buttons */
+.subject-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.subject-buttons button {
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.subject-buttons button:hover {
+    background-color: #2980b9;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .subject-buttons button {
+        font-size: 14px;
+        padding: 12px 25px;
+    }
+}
+
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="subjects">
+        <h2>PICK A SUB-SUBJECT</h2>
+        <div class="subject-buttons">
+            <button class="one">Writing & Composition</button>
+            <button class="two">Critical Thinking & Analysis</button>
+            <button class="three">Oral Communication</button>
+            <button class="four">Grammar</button>
+            <button class="five">English for Beginners</button>
+            <button class="six">Etymology</button>
+        </div>
+    </section>
+</body>
+</html>

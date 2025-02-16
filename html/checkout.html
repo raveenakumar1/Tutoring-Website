@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // JavaScript to redirect to homepage or dashboard
+        function handleCancel() {
+            const isLoggedIn = false; // Update this condition based on your authentication logic
+            if (isLoggedIn) {
+                window.location.href = '/dashboard'; // Redirect to dashboard if logged in
+            } else {
+                window.location.href = '/home'; // Redirect to homepage if not logged in
+            }
+        }
+    </script>
+    <style>
+        /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Checkout Form */
+.checkout-form {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form {
+    width: 65%;
+}
+
+form label {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+form select, form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form input:focus {
+    border-color: #333;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+button.cancel {
+    background-color: #d9534f;
+}
+
+button.cancel:hover {
+    background-color: #c9302c;
+}
+
+.extra-information {
+    margin-top: 20px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.checkbox a:hover {
+    text-decoration: underline;
+}
+
+/* Tutor Section */
+.tutor-section {
+    width: 30%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.tutor-image {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.tutor-section h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+.tutor-section p {
+    font-size: 14px;
+    color: #555;
+}
+
+.tutor-section button {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .checkout-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form, .tutor-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .tutor-image {
+        height: 150px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="checkout-form">
+        <div class="form">
+            <form>
+                <label for="subject">Subject</label>
+                <select id="options" name="subject">
+                    <option value="1">Grade 11 Physics</option>
+                    <option value="2">Optics & Waves</option>
+                    <option value="3">Grade 12 Physics</option>
+                </select>
+
+                <label for="consultation-dates">Enter three dates and times for when you're available for a free 15-minute virtual consultation.</label>
+                <input type="date" id="first-date" name="first-date" required>
+                <input type="time" id="first-time" name="first-time" required>
+                <input type="date" id="second-date" name="second-date" required>
+                <input type="time" id="second-time" name="second-time" required>
+                <input type="date" id="third-date" name="third-date" required>
+                <input type="time" id="third-time" name="third-time" required>
+
+                <section class="extra-information">
+                    <label for="extra-information">Extra Information (optional, but highly encouraged!)</label>
+
+                    <label for="meeting-frequency">How often would you like to meet per week?</label>
+                    <input type="number" name="frequency" id="frequency" placeholder="Choose a number" min="1" max="3">
+
+                    <label for="lesson-length">How long would you like your lessons? (Example: 1 for one hour, 1.5 for 1.5 hours)</label>
+                    <input type="number" min="0.5" max="4" step="0.5" placeholder="Choose a number">
+
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <label for="fileUpload">Upload your Course Outline/Syllabus</label>
+                        <input type="file" id="fileUpload" name="fileUpload">
+                    </form>
+
+                    <label for="additonal-information">Enter any additional information your Tutor should know (e.g., upcoming exams, difficulties, preferred learning styles, etc.)</label>
+                    <input type="text" name="information" id="information" maxlength="700">
+                    <label class="checkbox">
+                        <input type="checkbox" name="terms" id="terms" required> I have read and agree to the <a href="#">terms and conditions</a>.
+                    </label>
+                    <button class="button" type="submit">CONFIRM BOOKING</button>
+                    <button class="button cancel" type="button" onclick="handleCancel()">CANCEL</button>
+                </section>
+            </form>
+        </div>
+
+        <div class="tutor-section">
+            <div class="tutor-image"></div>
+            <h3>Raveena Kumar</h3>
+            <p>$25 CAD/hour</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente molestiae repellendus quos labore rem nihil officiis omnis est quibusdam, sint doloribus distinctio deserunt similique impedit debitis vitae maiores quaerat harum.</p>
+            <button class="button">LEARN MORE</button>
+        </div>
+    </div>
+</body>
+</html>

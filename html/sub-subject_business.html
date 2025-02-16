@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub-Subject Business</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header navigation */
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+/* Subject section */
+.subjects {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.subjects h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Buttons layout */
+.subject-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.subject-buttons button {
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.subject-buttons button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .subject-buttons button {
+        font-size: 14px;
+        padding: 12px 25px;
+    }
+}
+
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="subjects">
+        <h2>PICK A SUB-SUBJECT</h2>
+        <div class="subject-buttons">
+            <button class="one">High School Level Accounting</button>
+            <button class="two">Macroeconomics</button>
+            <button class="three">University Level Accounting</button>
+            <button class="four">High School Level Economics</button>
+            <button class="five">Microeconomics</button>
+            <button class="six">High School Level Marketing</button>
+            <button class="seven">Information Technology (Business Focus)</button>
+        </div>
+    </section>
+</body>
+</html>

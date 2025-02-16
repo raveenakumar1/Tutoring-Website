@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body and Basic Layout */
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff;
+    padding: 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+/* Registration Section */
+.registration {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.registration h1 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.registration p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Form Styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.form-container input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.buttons button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons button.back {
+    background-color: #6c757d;
+    color: white;
+}
+
+.buttons button.cancel {
+    background-color: #dc3545;
+    color: white;
+}
+
+.buttons button.submit {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effects */
+.buttons button:hover {
+    opacity: 0.9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .registration {
+        width: 90%;
+        padding: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+}
+
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="registration">
+        <h1>ENTER PARENT/GUARDIAN’S INFORMATION</h1>
+        <p>If the student is under the age of 18, we require their parent/guardian's information to ensure 
+        their safety and compliance with legal requirements. Since minors cannot legally enter contracts or make certain 
+        decisions on their own, having a parent or guardian involved allows us to obtain the necessary permissions for tutoring services. 
+        This also helps protect their privacy, ensures responsible payment 
+        handling, and allows guardians to stay informed about their educational progress.</p>
+        
+        <div class="form-container">
+            <form>
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+                
+                <label for="family-name">Family Name:</label>
+                <input type="text" id="family-name" name="family-name" required>
+                
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="buttons">
+            <button class="back">NEXT</button>
+            <button class="cancel">CANCEL</button>
+        </div>
+    </section>
+</body>
+
+<script>
+    // Function to validate the form
+    function validateForm(event) {
+        event.preventDefault(); // Prevent the form from submitting by default
+        
+        let formValid = true;
+
+        // Clear previous error messages
+        const errorMessages = document.querySelectorAll('.error');
+        errorMessages.forEach(error => error.textContent = '');
+
+        // Get form fields
+        const firstName = document.getElementById('first-name');
+        const familyName = document.getElementById('family-name');
+        const dob = document.getElementById('dob');
+        const email = document.getElementById('email');
+
+        // Validate first name
+        if (!firstName.value.trim()) {
+            document.getElementById('first-name-error').textContent = 'First name is required.';
+            formValid = false;
+        }
+
+        // Validate family name
+        if (!familyName.value.trim()) {
+            document.getElementById('family-name-error').textContent = 'Family name is required.';
+            formValid = false;
+        }
+
+        // Validate date of birth
+        if (!dob.value) {
+            document.getElementById('dob-error').textContent = 'Date of birth is required.';
+            formValid = false;
+        }
+
+        // Validate email
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@(hotmail\.com|gmail\.com|outlook\.com|yahoo\.com)$/;
+        if (!email.value || !emailPattern.test(email.value)) {
+            document.getElementById('email-error').textContent = 'Please enter a valid email address with one of the following domains: @hotmail.com, @gmail.com, @outlook.com, or @yahoo.com.';
+            formValid = false;
+        }
+
+        // If the form is valid, submit the form
+        if (formValid) {
+            alert("Form submitted successfully!");
+            // Uncomment the next line to actually submit the form when valid
+            // document.querySelector('form').submit();
+        }
+    }
+</script>
+</html>

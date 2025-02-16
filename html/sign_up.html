@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .input-error {
+        border-color: red;
+    }
+
+/* Header navigation */
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+/* Sign-up section */
+.sign-up-section {
+    text-align: center;
+    max-width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sign-up-section h1 {
+    margin-bottom: 20px;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Sign-in link */
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+p a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Sign-up button */
+.sign-in-btn {
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sign-in-btn:hover {
+    background-color: #2980b9;
+}
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Same styling as before */
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">LOGO</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Booking</a></li>
+                <li><a href="#">Learn More</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="sign-up-section">
+        <h1>CREATE AN ACCOUNT!</h1>
+        <div class="login-image">
+            <img src="login-character.png" alt="Happy character with book">
+        </div>
+        <form id="signup-form" onsubmit="return validateForm()">
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" required>
+            
+            <label for="family-name">Family Name:</label>
+            <input type="text" id="family-name" name="family-name" required>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Set Password:</label>
+            <input type="password" id="password" name="password" minlength="9" maxlength="20" required>
+            
+            <p>Already have an account? <a href="#">Sign in</a></p>
+
+            <button type="submit" class="sign-in-btn">ENTER</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // First Name Validation
+            const firstName = document.getElementById('first-name').value;
+            if (firstName.trim() === '') {
+                alert('Please enter your first name.');
+                return false; // Prevent form submission
+            }
+
+            // Family Name Validation
+            const familyName = document.getElementById('family-name').value;
+            if (familyName.trim() === '') {
+                alert('Please enter your family name.');
+                return false; // Prevent form submission
+            }
+
+            // Date of Birth Validation
+            const dob = document.getElementById('dob').value;
+            if (dob === '') {
+                alert('Please select your date of birth.');
+                return false; // Prevent form submission
+            }
+
+            // Email Validation
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@(hotmail\.com|gmail\.com|outlook\.com|yahoo\.com|example\.com)$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address with one of the following domains: @hotmail.com, @gmail.com, @outlook.com, or @yahoo.com');
+                return false; // Prevent form submission
+            }
+
+            // Password Validation
+            const password = document.getElementById('password').value;
+            if (password.length < 9 || password.length > 20) {
+                alert('Password must be between 9 and 20 characters.');
+                return false; // Prevent form submission
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>
+</body>
+</html>
+
