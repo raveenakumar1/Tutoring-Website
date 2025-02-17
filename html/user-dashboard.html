@@ -325,14 +325,14 @@
             <img src="https://raveenakumar1.github.io/images/angry-pingy.png" alt="angry pingy">
             <h2>Request a Refund</h2>
             <form action="https://formsubmit.co/raveenakumar574@gmail.com" method="POST" id="refundForm">
-                <input type="hidden" name="_subject" value="NEW BOOKING REQUEST!">
+                <input type="hidden" name="_subject" value="NEW REFUND REQUEST!">
                 <input type="hidden" name="_next" value="https://raveenakumar1.github.io/html/refund_confirmation">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="email" placeholder="Your Email Address" required>
-                <textarea id="explain" placeholder="Why are you requesting a refund?" required></textarea>
-                <div class="submit-btn">
+                <input name="fullName" type="text" placeholder="Your Full Name" required>
+                <input name="email" type="email" placeholder="Your Email Address" required>
+                <textarea name="reasons" id="explain" placeholder="Why are you requesting a refund?" required></textarea>
+                <section class="submit-btn">
                     <input type="submit" value="Submit Request">
-                </div>
+                </section>
             </form>
         </div>
     </div>
@@ -344,7 +344,7 @@
             <img src="https://raveenakumar1.github.io/images/angry-pingy.png" alt="angry pingy">
             <h2>Reason for Cancellation</h2>
             <form action="https://formsubmit.co/raveenakumar574@gmail.com" method="POST" id="infoForm">
-                <input type="hidden" name="_subject" value="NEW BOOKING REQUEST!">
+                <input type="hidden" name="_subject" value="NEW CANCEL REQUEST">
                 <input type="hidden" name="_next" value="https://raveenakumar1.github.io/html/user-dashboard">
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name" required><br><br>
