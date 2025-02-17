@@ -363,20 +363,20 @@
     //Current and Past Bookings Display
 
     document.addEventListener("DOMContentLoaded", function () {
-        // Fetch and display the username
-        const userName = localStorage.getItem("firstName"); // Make sure username is stored correctly in localStorage
+    // Fetch and display the username
+        const userName = localStorage.getItem("firstName"); // Ensure username is stored in localStorage
         const userNameElement = document.getElementById("user-name");
 
         if (userName) {
             userNameElement.textContent = userName; // Set the username from localStorage
         } else {
-            userNameElement.textContent = "User"; // Default value if username is not set
+            userNameElement.textContent = "User"; // Default if username is not set
         }
 
-        // Proceed with other code for current and past bookings as you have done
         const userEmail = localStorage.getItem("email");
         let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
+        // Current Booking Section
         const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
         const currentBookingContainer = document.getElementById("current-booking-info");
         const noBookingMessage = document.getElementById("no-booking-message");
@@ -392,6 +392,7 @@
             cancelButton.style.display = "none";
         }
 
+        // Past Bookings Section
         const pastBookings = bookings.filter(b => b.email === userEmail && b.isCurrent === false);
         const pastBookingsContainer = document.querySelector(".past-bookings .bookings");
         const noPastBookingsMessage = document.getElementById("no-past-booking-message");
@@ -406,7 +407,35 @@
         } else {
             noPastBookingsMessage.style.display = "block";
         }
+
+        // Cancel Booking Logic
+        cancelButton.addEventListener('click', function () {
+        // Show the cancellation popup
+        cancelPopup.style.display = 'flex';  
+
+        // When the form inside the cancellation popup is submitted, mark the booking as past
+        const cancelForm = document.getElementById('infoForm');
+        cancelForm.addEventListener('submit', function (e) {
+            e.preventDefault();  // Prevent form from submitting immediately
+            
+            // Mark the current booking as past
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+            const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
+
+            if (currentBooking) {
+                // Update the current booking status
+                currentBooking.isCurrent = false;
+
+                // Save the updated bookings list back to localStorage
+                localStorage.setItem("bookings", JSON.stringify(bookings));
+            }
+
+            // Redirect to the updated dashboard
+            window.location.href = "https://raveenakumar1.github.io/html/user-dashboard";  
+        });
     });
+
+
 
 
 //Popups
