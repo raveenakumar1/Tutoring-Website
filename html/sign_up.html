@@ -184,82 +184,86 @@ form div.incorrect input {
 </main>
 
 <script>
-document.getElementById("signup-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form from submitting by default
+    document.getElementById("signup-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Stop form from submitting
 
-    // First Name Validation
-    const firstName = document.getElementById("first-name").value.trim();
-    if (firstName === "") {
-        alert("Please enter your first name.");
-        return;
-    }
+        // First Name Validation
+        const firstName = document.getElementById("first-name").value.trim();
+        if (firstName === "") {
+            alert("Please enter your first name.");
+            return;
+        }
 
-    // Family Name Validation
-    const familyName = document.getElementById("family-name").value.trim();
-    if (familyName === "") {
-        alert("Please enter your family name.");
-        return;
-    }
+        // Family Name Validation
+        const familyName = document.getElementById("family-name").value.trim();
+        if (familyName === "") {
+            alert("Please enter your family name.");
+            return;
+        }
 
-    // Date of Birth Validation
-    const dob = document.getElementById("dob").value;
-    if (dob === "") {
-        alert("Please select your date of birth.");
-        return;
-    }
+        // Date of Birth Validation
+        const dob = document.getElementById("dob").value;
+        if (dob === "") {
+            alert("Please select your date of birth.");
+            return;
+        }
 
-    // Calculate age
-    const birthDate = new Date(dob);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--; // Adjust if birthday hasn't occurred yet this year
-    }
+        // Calculate age
+        const birthDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--; // Adjust if birthday hasn't occurred yet this year
+        }
 
-    // Check for invalid ages first
-    if (age <= 0 || age >= 120) {
-        alert("Please enter a valid date...");
-        return;
-    }
+        // Validate age range
+        if (age <= 0 || age >= 120) {
+            alert("Please enter a valid date...");
+            return;
+        }
 
-    // Redirect if under 18
-    if (age < 18) {
-        alert("You must provide parental information. Redirecting...");
-        window.location.href = "https://raveenakumar1.github.io/html/parent_info"; // Redirect to parent info page
-        return; // Stop execution
-    }
+        // Redirect if under 18
+        if (age < 18) {
+            alert("You must provide parental information. Redirecting...");
+            window.location.href = "https://raveenakumar1.github.io/html/parent_info";
+            return;
+        }
 
+        // Email Validation
+        const email = document.getElementById("email").value;
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@(hotmail\.com|gmail\.com|outlook\.com|yahoo\.com)$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address with one of the following domains: @hotmail.com, @gmail.com, @outlook.com, or @yahoo.com");
+            return;
+        }
 
-    // Email Validation
-    const email = document.getElementById("email").value;
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@(hotmail\.com|gmail\.com|outlook\.com|yahoo\.com)$/;
-    if (!emailPattern.test(email)) {
-        alert("Please enter a valid email address with one of the following domains: @hotmail.com, @gmail.com, @outlook.com, or @yahoo.com");
-        return;
-    }
+        // Password Validation
+        const password = document.getElementById("password").value;
+        if (password.length < 9 || password.length > 20) {
+            alert("Password must be between 9 and 20 characters.");
+            return;
+        }
 
-    // Password Validation
-    const password = document.getElementById("password").value;
-    if (password.length < 9 || password.length > 20) {
-        alert("Password must be between 9 and 20 characters.");
-        return;
-    }
+        // Store user signup success and user info BEFORE redirecting
+        localStorage.setItem("isSignedUp", "true");
+        localStorage.setItem("email", email);
+        localStorage.setItem("firstName", firstName);
+        localStorage.setItem("password", password);
 
-    // Store user signup success
-    localStorage.setItem("isSignedUp", "true");
-    // Get stored course selection
-    const selectedCourse = localStorage.getItem("selectedCourse");
+        // Get stored course selection
+        const selectedCourse = localStorage.getItem("selectedCourse");
 
-    // If a course is selected, go to checkout
-    if (selectedCourse) {
-        alert("Signup successful! Redirecting to checkout...");
-        window.location.href = `https://raveenakumar1.github.io/html/checkout?course=${encodeURIComponent(selectedCourse)}`;
-    } else {
-        alert("Signup successful! Redirecting to dashboard...");
-        window.location.href = "https://raveenakumar1.github.io/html/user-dashboard";
-    }
-});
+        // Redirect based on course selection
+        if (selectedCourse) {
+            alert("Signup successful! Redirecting to checkout...");
+            window.location.href = `https://raveenakumar1.github.io/html/checkout?course=${encodeURIComponent(selectedCourse)}`;
+        } else {
+            alert("Signup successful! Redirecting to dashboard...");
+            window.location.href = "https://raveenakumar1.github.io/html/user-dashboard";
+        }
+    });
+
 
 
 </script>
