@@ -410,31 +410,33 @@
 
         // Cancel Booking Logic
         cancelButton.addEventListener('click', function () {
-        // Show the cancellation popup
-        cancelPopup.style.display = 'flex';  
+            // Remove the current booking and update it to past bookings
+            const updatedBookings = bookings.map(b => {
+                if (b.email === userEmail && b.isCurrent === true) {
+                    // Move this booking to past bookings
+                    b.isCurrent = false; 
+                }
+                return b;
+            });
 
-        // When the form inside the cancellation popup is submitted, mark the booking as past
-        const cancelForm = document.getElementById('infoForm');
-        cancelForm.addEventListener('submit', function (e) {
-            e.preventDefault();  // Prevent form from submitting immediately
-            
-            // Mark the current booking as past
-            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
-            const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
+            // Save the updated bookings back to localStorage
+            localStorage.setItem("bookings", JSON.stringify(updatedBookings));
 
-            if (currentBooking) {
-                // Update the current booking status
-                currentBooking.isCurrent = false;
+            // Update the UI
+            currentBookingContainer.style.display = "none";
+            noBookingMessage.style.display = "block";
+            cancelButton.style.display = "none";
 
-                // Save the updated bookings list back to localStorage
-                localStorage.setItem("bookings", JSON.stringify(bookings));
-            }
+            // Add to past bookings
+            const canceledBooking = bookings.find(b => b.email === userEmail && b.isCurrent === false);
+            const newPastBookingElement = document.createElement("span");
+            newPastBookingElement.textContent = `Subject: ${canceledBooking.subject} - Date: ${canceledBooking.date} - Time: ${canceledBooking.time}`;
+            pastBookingsContainer.appendChild(newPastBookingElement);
 
-            // Redirect to the updated dashboard
-            window.location.href = "https://raveenakumar1.github.io/html/user-dashboard";  
+            // Show success or any message to the user here
+            alert("Your booking has been canceled and moved to past bookings.");
         });
     });
-
 
 
 
