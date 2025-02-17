@@ -326,18 +326,15 @@ button.cancel:hover {
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Get stored subject from localStorage and set the selected option
+            // Get stored email and selected course from localStorage
+            const storedEmail = localStorage.getItem("email");
             const selectedCourse = localStorage.getItem("selectedCourse");
+
             const courseDropdown = document.getElementById("options");
+
+            // Set selected course if available
             if (selectedCourse && courseDropdown) {
                 courseDropdown.value = selectedCourse;
-            }
-
-            // Get stored email from localStorage and pre-fill the email field
-            const storedEmail = localStorage.getItem("email");
-            const emailInput = document.getElementById("email");
-            if (storedEmail && emailInput) {
-                emailInput.value = storedEmail;
             }
 
             const checkoutForm = document.getElementById("checkout-form");
@@ -347,45 +344,49 @@ button.cancel:hover {
             }
 
             checkoutForm.addEventListener("submit", function (event) {
-
+                event.preventDefault(); // Prevent default form submission
 
                 // Ensure required elements exist
-                if (!courseDropdown || !emailInput) {
-                    console.error("Form elements missing!");
+                if (!courseDropdown) {
+                    console.error("Course dropdown is missing!");
                     return;
                 }
 
-                // Get form data
+                // Get selected course and stored email
                 const selectedSubject = courseDropdown.value;
-                const userEmail = emailInput.value;
+                const userEmail = localStorage.getItem("email"); // Get email from localStorage
 
-                // Create a new booking object with the form data
+                if (!userEmail) {
+                    console.error("No email found in localStorage!");
+                    alert("Error: No email associated with this booking.");
+                    return;
+                }
+
+                // Create a new booking object
                 const bookingDetails = {
                     subject: selectedSubject,
                     email: userEmail,
-                    date: new Date().toLocaleDateString(),  
-                    time: new Date().toLocaleTimeString(),  
+                    date: new Date().toLocaleDateString(),
+                    time: new Date().toLocaleTimeString(),
                     isCurrent: true
                 };
 
-                // Retrieve existing bookings from localStorage or initialize if empty
+                // Retrieve existing bookings or initialize an empty array
                 let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-                // Add the new booking to the list
+                // Add new booking to the list
                 bookings.push(bookingDetails);
 
-                // Store the updated bookings array back to localStorage
+                // Store updated bookings back in localStorage
                 localStorage.setItem("bookings", JSON.stringify(bookings));
 
-                // Show confirmation message before redirecting
+                // Show confirmation message
                 alert("Booking confirmed! You will receive a confirmation email shortly.");
 
                 // Redirect after 1 second
                 setTimeout(() => {
                     window.location.href = "https://raveenakumar1.github.io/html/confirmation_checkout";
                 }, 1000);
-
-                return false; // Ensure the form doesn't submit normally
             });
         });
 
