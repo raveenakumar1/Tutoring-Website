@@ -364,79 +364,79 @@
 
     document.addEventListener("DOMContentLoaded", function () {
     // Fetch and display the username
-        const userName = localStorage.getItem("firstName"); // Ensure username is stored in localStorage
-        const userNameElement = document.getElementById("user-name");
+    const userName = localStorage.getItem("firstName"); // Ensure username is stored in localStorage
+    const userNameElement = document.getElementById("user-name");
 
-        if (userName) {
-            userNameElement.textContent = userName; // Set the username from localStorage
-        } else {
-            userNameElement.textContent = "User"; // Default if username is not set
-        }
+    if (userName) {
+        userNameElement.textContent = userName; // Set the username from localStorage
+    } else {
+        userNameElement.textContent = "User"; // Default if username is not set
+    }
 
-        const userEmail = localStorage.getItem("email");
-        let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    const userEmail = localStorage.getItem("email");
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-        // Current Booking Section
-        const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
-        const currentBookingContainer = document.getElementById("current-booking-info");
-        const noBookingMessage = document.getElementById("no-booking-message");
-        const cancelButton = document.getElementById("cancelButton");
+    // Current Booking Section
+    const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
+    const currentBookingContainer = document.getElementById("current-booking-info");
+    const noBookingMessage = document.getElementById("no-booking-message");
+    const cancelButton = document.getElementById("cancelButton");
 
-        if (currentBooking) {
-            currentBookingContainer.textContent = `Subject: ${currentBooking.subject} - Date: ${currentBooking.date} - Time: ${currentBooking.time}`;
-            noBookingMessage.style.display = "none";
-            cancelButton.style.display = "block";
-        } else {
-            currentBookingContainer.style.display = "none";
-            noBookingMessage.style.display = "block";
-            cancelButton.style.display = "none";
-        }
+    if (currentBooking) {
+        currentBookingContainer.textContent = `Subject: ${currentBooking.subject} - Date: ${currentBooking.date} - Time: ${currentBooking.time}`;
+        noBookingMessage.style.display = "none";
+        cancelButton.style.display = "block";
+    } else {
+        currentBookingContainer.style.display = "none";
+        noBookingMessage.style.display = "block";
+        cancelButton.style.display = "none";
+    }
 
-        // Past Bookings Section
-        const pastBookings = bookings.filter(b => b.email === userEmail && b.isCurrent === false);
-        const pastBookingsContainer = document.querySelector(".past-bookings .bookings");
-        const noPastBookingsMessage = document.getElementById("no-past-booking-message");
+    // Past Bookings Section
+    const pastBookings = bookings.filter(b => b.email === userEmail && b.isCurrent === false);
+    const pastBookingsContainer = document.querySelector(".past-bookings .bookings");
+    const noPastBookingsMessage = document.getElementById("no-past-booking-message");
 
-        if (pastBookings.length > 0) {
-            noPastBookingsMessage.style.display = "none";
-            pastBookings.forEach(booking => {
-                let bookingElement = document.createElement("span");
-                bookingElement.textContent = `Subject: ${booking.subject} - Date: ${booking.date} - Time: ${booking.time}`;
-                pastBookingsContainer.appendChild(bookingElement);
-            });
-        } else {
-            noPastBookingsMessage.style.display = "block";
-        }
-
-        // Cancel Booking Logic
-        cancelButton.addEventListener('click', function () {
-            // Remove the current booking and update it to past bookings
-            const updatedBookings = bookings.map(b => {
-                if (b.email === userEmail && b.isCurrent === true) {
-                    // Move this booking to past bookings
-                    b.isCurrent = false; 
-                }
-                return b;
-            });
-
-            // Save the updated bookings back to localStorage
-            localStorage.setItem("bookings", JSON.stringify(updatedBookings));
-
-            // Update the UI
-            currentBookingContainer.style.display = "none";
-            noBookingMessage.style.display = "block";
-            cancelButton.style.display = "none";
-
-            // Add to past bookings
-            const canceledBooking = bookings.find(b => b.email === userEmail && b.isCurrent === false);
-            const newPastBookingElement = document.createElement("span");
-            newPastBookingElement.textContent = `Subject: ${canceledBooking.subject} - Date: ${canceledBooking.date} - Time: ${canceledBooking.time}`;
-            pastBookingsContainer.appendChild(newPastBookingElement);
-
-            // Show success or any message to the user here
-            alert("Your booking has been canceled and moved to past bookings.");
+    if (pastBookings.length > 0) {
+        noPastBookingsMessage.style.display = "none";
+        pastBookings.forEach(booking => {
+            let bookingElement = document.createElement("span");
+            bookingElement.textContent = `Subject: ${booking.subject} - Date: ${booking.date} - Time: ${booking.time}`;
+            pastBookingsContainer.appendChild(bookingElement);
         });
+    } else {
+        noPastBookingsMessage.style.display = "block";
+    }
+
+    // Cancel Booking Logic
+    cancelButton.addEventListener('click', function () {
+        // Remove the current booking and update it to past bookings
+        const updatedBookings = bookings.map(b => {
+            if (b.email === userEmail && b.isCurrent === true) {
+                // Move this booking to past bookings
+                b.isCurrent = false; 
+            }
+            return b;
+        });
+
+        // Save the updated bookings back to localStorage
+        localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+
+        // Update the UI
+        currentBookingContainer.style.display = "none";
+        noBookingMessage.style.display = "block";
+        cancelButton.style.display = "none";
+
+        // Add to past bookings
+        const canceledBooking = bookings.find(b => b.email === userEmail && b.isCurrent === false);
+        const newPastBookingElement = document.createElement("span");
+        newPastBookingElement.textContent = `Subject: ${canceledBooking.subject} - Date: ${canceledBooking.date} - Time: ${canceledBooking.time}`;
+        pastBookingsContainer.appendChild(newPastBookingElement);
+
+        // Show success or any message to the user here
+        alert("Your booking has been canceled and moved to past bookings.");
     });
+});
 
 
 
