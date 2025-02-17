@@ -139,8 +139,10 @@ nav ul li a:hover {
                 dashboardLink.href = `https://raveenakumar1.github.io/html/user-dashboard?email=${encodeURIComponent(userEmail)}&name=${encodeURIComponent(userName)}`;
             } else {
                 console.warn("User email or name not found in localStorage.");
+                alert("Please log in to view your dashboard.");
             }
         });
+
     </script>
 </body>
 </html>

@@ -324,44 +324,69 @@ button.cancel:hover {
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        // Get stored subject from localStorage and set the selected option
-        const selectedCourse = localStorage.getItem("selectedCourse");
-        if (selectedCourse) {
-            document.getElementById("options").value = selectedCourse;
-        }
+            // Get stored subject from localStorage and set the selected option
+            const selectedCourse = localStorage.getItem("selectedCourse");
+            const courseDropdown = document.getElementById("options");
+            if (selectedCourse && courseDropdown) {
+                courseDropdown.value = selectedCourse;
+            }
 
-        // Get stored email from localStorage and pre-fill the email field
-        const storedEmail = localStorage.getItem("email");
-        if (storedEmail) {
-            document.getElementById("email").value = storedEmail;
-        }
+            // Get stored email from localStorage and pre-fill the email field
+            const storedEmail = localStorage.getItem("email");
+            const emailInput = document.getElementById("email");
+            if (storedEmail && emailInput) {
+                emailInput.value = storedEmail;
+            }
 
-        document.getElementById("checkout-form").addEventListener("submit", function () {
-            // Get form data
-            const selectedSubject = document.getElementById("options").value;
-            const userEmail = document.getElementById("email").value;
+            const checkoutForm = document.getElementById("checkout-form");
+            if (!checkoutForm) {
+                console.error("Checkout form not found!");
+                return;
+            }
 
-            // Create a new booking object with the form data
-            const bookingDetails = {
-                subject: selectedSubject,
-                email: userEmail,
-                bookedOn: new Date().toLocaleString(), // Store the current date and time
-                isCurrent: true // Indicate it's the current booking
-            };
+            checkoutForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent form from reloading the page
 
-            // Retrieve existing bookings from localStorage or initialize if empty
-            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+                // Ensure required elements exist
+                if (!courseDropdown || !emailInput) {
+                    console.error("Form elements missing!");
+                    return;
+                }
 
-            // Add the new booking to the list
-            bookings.push(bookingDetails);
+                // Get form data
+                const selectedSubject = courseDropdown.value;
+                const userEmail = emailInput.value;
 
-            // Store the updated bookings array back to localStorage
-            localStorage.setItem("bookings", JSON.stringify(bookings));
+                // Create a new booking object with the form data
+                const bookingDetails = {
+                    subject: selectedSubject,
+                    email: userEmail,
+                    date: new Date().toLocaleDateString(),  
+                    time: new Date().toLocaleTimeString(),  
+                    isCurrent: true
+                };
 
-            // Optionally, alert or handle booking confirmation logic here
-            alert("Booking confirmed! You will receive a confirmation email shortly.");
+                // Retrieve existing bookings from localStorage or initialize if empty
+                let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+                // Add the new booking to the list
+                bookings.push(bookingDetails);
+
+                // Store the updated bookings array back to localStorage
+                localStorage.setItem("bookings", JSON.stringify(bookings));
+
+                // Show confirmation message before redirecting
+                alert("Booking confirmed! You will receive a confirmation email shortly.");
+
+                // Redirect after 1 second
+                setTimeout(() => {
+                    window.location.href = "https://raveenakumar1.github.io/html/user-dashboard";
+                }, 1000);
+
+                return false; // Ensure the form doesn't submit normally
+            });
         });
-    });
+
 
 
     </script>
