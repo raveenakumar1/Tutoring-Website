@@ -360,49 +360,54 @@
     </div>
 <script>
 
-//Current and Past Bookings Display
+    //Current and Past Bookings Display
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the current user's email
-    const userEmail = localStorage.getItem("email");
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch and display the username
+        const userName = localStorage.getItem("firstName"); // Make sure username is stored correctly in localStorage
+        const userNameElement = document.getElementById("user-name");
 
-    // Retrieve all bookings from localStorage
-    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+        if (userName) {
+            userNameElement.textContent = userName; // Set the username from localStorage
+        } else {
+            userNameElement.textContent = "User"; // Default value if username is not set
+        }
 
-    // ----- CURRENT BOOKING -----
-    const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
-    const currentBookingContainer = document.getElementById("current-booking-info");
-    const noBookingMessage = document.getElementById("no-booking-message");
-    const cancelButton = document.getElementById("cancelButton"); // Cancel button element
+        // Proceed with other code for current and past bookings as you have done
+        const userEmail = localStorage.getItem("email");
+        let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-    // Display current booking info if a current booking exists
-    if (currentBooking) {
-        currentBookingContainer.textContent = `Subject: ${currentBooking.subject} - Date: ${currentBooking.date} - Time: ${currentBooking.time}`;
-        noBookingMessage.style.display = "none";
-        cancelButton.style.display = "block"; // Show the cancel button when there is a booking
-    } else {
-        currentBookingContainer.style.display = "none"; // Hide the current booking section
-        noBookingMessage.style.display = "block"; // Show the "no bookings" message
-        cancelButton.style.display = "none"; // Hide the cancel button when there is no booking
-    }
+        const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
+        const currentBookingContainer = document.getElementById("current-booking-info");
+        const noBookingMessage = document.getElementById("no-booking-message");
+        const cancelButton = document.getElementById("cancelButton");
 
-    // ----- PAST BOOKINGS -----
-    const pastBookings = bookings.filter(b => b.email === userEmail && b.isCurrent === false);
-    const pastBookingsContainer = document.querySelector(".past-bookings .bookings");
-    const noPastBookingsMessage = document.getElementById("no-past-booking-message");
+        if (currentBooking) {
+            currentBookingContainer.textContent = `Subject: ${currentBooking.subject} - Date: ${currentBooking.date} - Time: ${currentBooking.time}`;
+            noBookingMessage.style.display = "none";
+            cancelButton.style.display = "block";
+        } else {
+            currentBookingContainer.style.display = "none";
+            noBookingMessage.style.display = "block";
+            cancelButton.style.display = "none";
+        }
 
-    // Display past bookings if available
-    if (pastBookings.length > 0) {
-        noPastBookingsMessage.style.display = "none"; // Hide the "no past bookings" message
-        pastBookings.forEach(booking => {
-            let bookingElement = document.createElement("span");
-            bookingElement.textContent = `Subject: ${booking.subject} - Date: ${booking.date} - Time: ${booking.time}`;
-            pastBookingsContainer.appendChild(bookingElement);
-        });
-    } else {
-        noPastBookingsMessage.style.display = "block"; // Show the "no past bookings" message
-    }
-});
+        const pastBookings = bookings.filter(b => b.email === userEmail && b.isCurrent === false);
+        const pastBookingsContainer = document.querySelector(".past-bookings .bookings");
+        const noPastBookingsMessage = document.getElementById("no-past-booking-message");
+
+        if (pastBookings.length > 0) {
+            noPastBookingsMessage.style.display = "none";
+            pastBookings.forEach(booking => {
+                let bookingElement = document.createElement("span");
+                bookingElement.textContent = `Subject: ${booking.subject} - Date: ${booking.date} - Time: ${booking.time}`;
+                pastBookingsContainer.appendChild(bookingElement);
+            });
+        } else {
+            noPastBookingsMessage.style.display = "block";
+        }
+    });
+
 
 //Popups
 
