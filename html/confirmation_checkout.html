@@ -131,12 +131,14 @@ nav ul li a:hover {
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const userEmail = localStorage.getItem("email"); // Get email from localStorage
-            const userName = localStorage.getItem("firstName");   // Get name from localStorage
+            const dashboardLink = document.getElementById("dashboard-link");
+            const userEmail = localStorage.getItem("email");
+            const userName = localStorage.getItem("firstName");
 
             if (userEmail && userName) {
-                // Set the dashboard link to include the user's email
-                document.getElementById("dashboard-link").href = `https://raveenakumar1.github.io/html/user-dashboard?email=${encodeURIComponent(userEmail)}&name=${encodeURIComponent(userName)}`;
+                dashboardLink.href = `https://raveenakumar1.github.io/html/user-dashboard?email=${encodeURIComponent(userEmail)}&name=${encodeURIComponent(userName)}`;
+            } else {
+                console.warn("User email or name not found in localStorage.");
             }
         });
     </script>
