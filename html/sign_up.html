@@ -125,102 +125,146 @@ p a:hover {
     background-color: #2980b9;
 }
 
-</style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+form div.incorrect label{
 
-</head>
-<style>
-    /* Same styling as before */
-</style>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="https://raveenakumar1.github.io">LOGO</a></li>
-                <li><a href="https://raveenakumar1.github.io">Home</a></li>
-                <li><a href="https://raveenakumar1.github.io/html/services">Services</a></li>
-                <li><a href="https://raveenakumar1.github.io/html/booking">Booking</a></li>
-                <li><a href="https://raveenakumar1.github.io/html/learn_more">Learn More</a></li>
-                <li><a href="https://raveenakumar1.github.io/html/contact">Contact</a></li>
-                <li><a href="https://raveenakumar1.github.io/html/login">Login</a></li>
-            </ul>
-        </nav>
-    </header>
+    background-color: red;
 
+}
+
+form div.incorrect input {
+
+    border-color: black;
+}
+
+</style>
+<header>
+    <nav>
+        <ul>
+            <li><a href="https://raveenakumar1.github.io">LOGO</a></li>
+            <li><a href="https://raveenakumar1.github.io">Home</a></li>
+            <li><a href="https://raveenakumar1.github.io/html/services">Services</a></li>
+            <li><a href="https://raveenakumar1.github.io/html/booking">Booking</a></li>
+            <li><a href="https://raveenakumar1.github.io/html/learn_more">Learn More</a></li>
+            <li><a href="https://raveenakumar1.github.io/html/contact">Contact</a></li>
+            <li><a href="https://raveenakumar1.github.io/html/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
     <div class="sign-up-section">
         <h1>CREATE AN ACCOUNT!</h1>
         <div class="login-image">
-            <img src="https://raveenkumar1.github.io/images/login-signup-pingy.png" alt="happy pingy">
+            <img src="https://raveenakumar1.github.io/images/login-signup-pingy.png" alt="happy pingy">
         </div>
-        <form id="signup-form" onsubmit="return validateForm()">
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="first-name" required>
-            
-            <label for="family-name">Family Name:</label>
-            <input type="text" id="family-name" name="family-name" required>
-            
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="password">Set Password:</label>
-            <input type="password" id="password" name="password" minlength="9" maxlength="20" required>
-            
-            <p>Already have an account? <a href="https://raveenakumar1.github.io/html/login">Sign in</a></p>
 
-            <button type="submit" class="sign-in-btn">ENTER</button>
+        <form id="signup-form">
+            <div>
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="family-name">Family Name:</label>
+                <input type="text" id="family-name" name="family-name" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Set Password:</label>
+                <input type="password" id="password" name="password" minlength="9" maxlength="20" required>
+
+                <p>Already have an account? <a href="https://raveenakumar1.github.io/html/login">Sign in</a></p>
+
+                <button type="submit" class="sign-in-btn">ENTER</button>
+            </div>
         </form>
     </div>
+</main>
 
-    <script>
-        function validateForm() {
-            // First Name Validation
-            const firstName = document.getElementById('first-name').value;
-            if (firstName.trim() === '') {
-                alert('Please enter your first name.');
-                return false; // Prevent form submission
-            }
+<script>
+document.getElementById("signup-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form from submitting by default
 
-            // Family Name Validation
-            const familyName = document.getElementById('family-name').value;
-            if (familyName.trim() === '') {
-                alert('Please enter your family name.');
-                return false; // Prevent form submission
-            }
+    // First Name Validation
+    const firstName = document.getElementById("first-name").value.trim();
+    if (firstName === "") {
+        alert("Please enter your first name.");
+        return;
+    }
 
-            // Date of Birth Validation
-            const dob = document.getElementById('dob').value;
-            if (dob === '') {
-                alert('Please select your date of birth.');
-                return false; // Prevent form submission
-            }
+    // Family Name Validation
+    const familyName = document.getElementById("family-name").value.trim();
+    if (familyName === "") {
+        alert("Please enter your family name.");
+        return;
+    }
 
-            // Email Validation
-            const email = document.getElementById('email').value;
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@(hotmail\.com|gmail\.com|outlook\.com|yahoo\.com|example\.com)$/;
-            if (!emailPattern.test(email)) {
-                alert('Please enter a valid email address with one of the following domains: @hotmail.com, @gmail.com, @outlook.com, or @yahoo.com');
-                return false; // Prevent form submission
-            }
+    // Date of Birth Validation
+    const dob = document.getElementById("dob").value;
+    if (dob === "") {
+        alert("Please select your date of birth.");
+        return;
+    }
 
-            // Password Validation
-            const password = document.getElementById('password').value;
-            if (password.length < 9 || password.length > 20) {
-                alert('Password must be between 9 and 20 characters.');
-                return false; // Prevent form submission
-            }
+    // Calculate age
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--; // Adjust if birthday hasn't occurred yet this year
+    }
 
-            // If all validations pass
-            return true;
-        }
-    </script>
+    // Check for invalid ages first
+    if (age <= 0 || age >= 120) {
+        alert("Please enter a valid date...");
+        return;
+    }
+
+    // Redirect if under 18
+    if (age < 18) {
+        alert("You must provide parental information. Redirecting...");
+        window.location.href = "https://raveenakumar1.github.io/html/parent_info"; // Redirect to parent info page
+        return; // Stop execution
+    }
+
+
+    // Email Validation
+    const email = document.getElementById("email").value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@(hotmail\.com|gmail\.com|outlook\.com|yahoo\.com)$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address with one of the following domains: @hotmail.com, @gmail.com, @outlook.com, or @yahoo.com");
+        return;
+    }
+
+    // Password Validation
+    const password = document.getElementById("password").value;
+    if (password.length < 9 || password.length > 20) {
+        alert("Password must be between 9 and 20 characters.");
+        return;
+    }
+
+    // Store user signup success
+    localStorage.setItem("isSignedUp", "true");
+    // Get stored course selection
+    const selectedCourse = localStorage.getItem("selectedCourse");
+
+    // If a course is selected, go to checkout
+    if (selectedCourse) {
+        alert("Signup successful! Redirecting to checkout...");
+        window.location.href = `https://raveenakumar1.github.io/html/checkout?course=${encodeURIComponent(selectedCourse)}`;
+    } else {
+        alert("Signup successful! Redirecting to dashboard...");
+        window.location.href = "https://raveenakumar1.github.io/html/user-dashboard";
+    }
+});
+
+
+</script>
+
+
 </body>
 </html>
 

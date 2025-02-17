@@ -112,14 +112,22 @@ nav ul li a:hover {
     <section class="subjects">
         <h2>PICK A SUB-SUBJECT</h2>
         <div class="subject-buttons">
-            <button class="one">Writing & Composition</button>
-            <button class="two">Critical Thinking & Analysis</button>
-            <button class="three">Oral Communication</button>
-            <button class="four">Grammar</button>
-            <button class="five">English for Beginners</button>
-            <button class="six">Etymology</button>
+            <button onclick="selectCourse('Writing & Composition')" class="one">Writing & Composition</button>
+            <button onclick="selectCourse('Critical Thinking & Analysis')" class="two">Critical Thinking & Analysis</button>
+            <button onclick="selectCourse('Oral Communication')" class="three">Oral Communication</button>
+            <button onclick="selectCourse('Grammar')" class="four">Grammar</button>
+            <button onclick="selectCourse('English for Beginners')" class="five">English for Beginners</button>
+            <button onclick="selectCourse('Etymology')" class="six">Etymology</button>
             <hr class="line-break">
         </div>
     </section>
+    <script>
+        function selectCourse(courseName) {
+            localStorage.setItem("selectedCourse", courseName); // Store course
+            window.location.href = "https://raveenakumar1.github.io/html/sign_up"; // Redirect to login
+        }
+
+
+    </script>
 </body>
 </html>

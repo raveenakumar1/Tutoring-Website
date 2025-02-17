@@ -132,22 +132,30 @@ nav ul li a:hover {
     <section class="subjects">
         <h2>PICK A SUB-SUBJECT</h2>
         <div class="subject-buttons">
-            <button class="one">Linear Algebra</button>
-            <button class="two">Discrete Math</button>
-            <button class="three">Probability & Statistics</button>
-            <button class="four">Differential Equations</button>
-            <button class="five">Grades 7-8 Math</button>
-            <button class="six">JK-SK Math</button>
-            <button class="seven">Grades 6-8 Math</button>
-            <button class="eight">Calculus I</button> <!-- Fixed spelling "Calculas" -->
-            <button class="nine">Calculus II</button> <!-- Fixed spelling "Calculas" -->
-            <button class="ten">Grade 9 Math</button>
-            <button class="eleven">Data Management</button>
-            <button class="twelve">Calculus & Vectors</button> <!-- Fixed spelling "Calculas" -->
-            <button class="thirteen">Advanced Functions</button>
+            <button onclick="selectCourse('Linear Algebra')" class="one">Linear Algebra</button>
+            <button onclick="selectCourse('Discrete Math')" class="two">Discrete Math</button>
+            <button onclick="selectCourse('Probability & Statistics')" class="three">Probability & Statistics</button>
+            <button onclick="selectCourse('Differential Equations')" class="four">Differential Equations</button>
+            <button onclick="selectCourse('Grades 7-8 Math')" class="five">Grades 7-8 Math</button>
+            <button onclick="selectCourse('JK-SK Math')" class="six">JK-SK Math</button>
+            <button onclick="selectCourse('Grades 6-8 Math')" class="seven">Grades 6-8 Math</button>
+            <button onclick="selectCourse('Calculas I')" class="eight">Calculus I</button> 
+            <button onclick="selectCourse('Calculas II')" class="nine">Calculus II</button> 
+            <button onclick="selectCourse('Grade 9 Math')" class="ten">Grade 9 Math</button>
+            <button onclick="selectCourse('Data Management')" class="eleven">Data Management</button>
+            <button onclick="selectCourse('Calculas & Vectors')" class="twelve">Calculus & Vectors</button> 
+            <button onclick="selectCourse('Advanced Functions')" class="thirteen">Advanced Functions</button>
             <hr class="line-break">
         </div>
     </section>
+    <script>
+        function selectCourse(courseName) {
+            localStorage.setItem("selectedCourse", courseName); // Store course
+            window.location.href = "https://raveenakumar1.github.io/html/sign_up"; // Redirect to login
+        }
+
+
+    </script>
     
 </body>
 </html>

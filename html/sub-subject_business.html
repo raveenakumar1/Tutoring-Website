@@ -111,15 +111,23 @@ nav ul li a:hover {
     <section class="subjects">
         <h2>PICK A SUB-SUBJECT</h2>
         <div class="subject-buttons">
-            <button class="one">High School Level Accounting</button>
-            <button class="two">Macroeconomics</button>
-            <button class="three">University Level Accounting</button>
-            <button class="four">High School Level Economics</button>
-            <button class="five">Microeconomics</button>
-            <button class="six">High School Level Marketing</button>
-            <button class="seven">Information Technology (Business Focus)</button>
+            <button onclick="selectCourse('High School Level Accounting')" class="one">High School Level Accounting</button>
+            <button onclick="selectCourse('Macroeconomics')" class="two">Macroeconomics</button>
+            <button onclick="selectCourse('University Level Accounting')" class="three">University Level Accounting</button>
+            <button onclick="selectCourse('High School Level Economics')" class="four">High School Level Economics</button>
+            <button onclick="selectCourse('Microeconomics')" class="five">Microeconomics</button>
+            <button onclick="selectCourse('High School Level Marketing')" class="six">High School Level Marketing</button>
+            <button onclick="selectCourse('Information Technology (Business Focus)')" class="seven">Information Technology (Business Focus)</button>
             <hr class="line-break">
         </div>
     </section>
+    <script>
+        function selectCourse(courseName) {
+            localStorage.setItem("selectedCourse", courseName); // Store course
+            window.location.href = "https://raveenakumar1.github.io/html/sign_up"; // Redirect to login
+        }
+
+
+    </script>
 </body>
 </html>

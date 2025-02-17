@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sub-Subject Physics</title>
-    <link rel="stylesheet" href="styles.css">
+
 </head>
 <style>
     /* Reset default styles */
@@ -93,7 +93,7 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    width: 200px; /* Fixed width for consistency */
+    width: 200px; /* Width */
 }
 
 /* Button hover effect */
@@ -117,8 +117,8 @@ footer {
     }
 
     .subject-buttons button {
-        width: 100%; /* Make buttons stretch across the screen */
-        font-size: 16px; /* Slightly smaller font size on smaller screens */
+        width: 100%; /* Buttons stretch across the screen */
+        font-size: 16px; /* Smaller font size on smaller screens */
     }
 }
 
@@ -141,15 +141,23 @@ footer {
     <section class="subjects">
         <h2>PICK A SUB-SUBJECT</h2>
         <div class="subject-buttons">
-            <button class="one">Grade 11 Physics</button>
-            <button class="two">Optics & Waves</button>
-            <button class="three">Grade 12 Physics</button>
-            <button class="four">Thermodynamics</button>
-            <button class="five">Electromagnetism</button>
-            <button class="six">Classical Mechanics</button>
+            <button onclick="selectCourse('Grade 11 Physics')" class="one">Grade 11 Physics</button>
+            <button onclick="selectCourse('Optics & Waves')" class="two">Optics & Waves</button>
+            <button onclick="selectCourse('Grade 12 Physics')" class="three">Grade 12 Physics</button>
+            <button onclick="selectCourse('Thermodynamics')" class="four">Thermodynamics</button>
+            <button onclick="selectCourse('Electromagnetism')" class="five">Electromagnetism</button>
+            <button onclick="selectCourse('Classical Mechanics')" class="six">Classical Mechanics</button>
             <hr class="line-break">
         </div>
     </section>
+    <script>
+        function selectCourse(courseName) {
+            localStorage.setItem("selectedCourse", courseName); // Store course
+            window.location.href = "https://raveenakumar1.github.io/html/sign_up"; // Redirect to login
+        }
+
+
+    </script>
     
 </body>
 </html>

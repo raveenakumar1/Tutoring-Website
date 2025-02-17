@@ -276,15 +276,16 @@
 
     <main>
         <div class="dashboard">
+            <h1>Welcome, <span id="user-name">User</span></h1>
             <!-- Current Booking Section -->
             <section class="current-booking">
                 <h2>Current Booking</h2>
                 <div class="current">
                     <!-- Booking exists -->
-                    <span id="current-booking-info">Subject: Mathematics - Date: 2025-03-10 - Time: 2:00 PM</span>
+                    <span id="current-booking-info">Loading current booking...</span>
                     <button class="cancel-booking" aria-label="Cancel the booking for Mathematics class" id="cancelButton">Cancel Class</button>
 
-                    <!-- No bookings message (hidden by default) -->
+                    <!-- No bookings message -->
                     <div id="no-booking-message" class="no-booking-message" style="display: none;">
                         <p>You have no bookings yet.</p>
                         <a href="https://raveenakumar1.github.io/html/booking" class="book-now" aria-label="Go to the booking page to schedule a new class">Book a Class</a>
@@ -296,14 +297,13 @@
             <section class="past-bookings">
                 <h2>Past Bookings</h2>
                 <div class="bookings">
-                    <span>Subject: Science - Date: 2025-03-01 - Time: 4:00 PM</span>
+                  
                 </div>
-                <div class="bookings">
-                    <span>Subject: English - Date: 2025-02-15 - Time: 1:00 PM</span>
+                <div id="no-past-booking-message" class="no-past-booking-message" style="display: none;">
+                    <p>You have no past bookings.</p>
+
                 </div>
-                <div class="bookings">
-                    <button aria-label="View all past bookings">View All</button>
-                </div>
+
             </section>
         </div>
 
@@ -325,7 +325,9 @@
             <span class="close-btn" id="closeRefundPopup">&times;</span>
             <img src="https://raveenakumar1.github.io/images/angry-pingy.png" alt="angry pingy">
             <h2>Request a Refund</h2>
-            <form id="refundForm">
+            <form action="https://formsubmit.co/raveenakumar574@gmail.com" method="POST" id="refundForm">
+                <input type="hidden" name="_subject" value="NEW BOOKING REQUEST!">
+                <input type="hidden" name="_next" value="https://raveenakumar1.github.io/html/refund_confirmation">
                 <input type="text" placeholder="Your Full Name" required>
                 <input type="email" placeholder="Your Email Address" required>
                 <textarea id="explain" placeholder="Why are you requesting a refund?" required></textarea>
@@ -342,7 +344,9 @@
             <span class="close-btn" id="closeCancelPopup">&times;</span>
             <img src="https://raveenakumar1.github.io/images/angry-pingy.png" alt="angry pingy">
             <h2>Reason for Cancellation</h2>
-            <form id="infoForm">
+            <form action="https://formsubmit.co/raveenakumar574@gmail.com" method="POST" id="infoForm">
+                <input type="hidden" name="_subject" value="NEW BOOKING REQUEST!">
+                <input type="hidden" name="_next" value="https://raveenakumar1.github.io/html/user-dashboard">
                 <label for="name">Name:</label><br>
                 <input type="text" id="name" name="name" required><br><br>
                 <label for="email">Email:</label><br>
@@ -355,52 +359,99 @@
             </form>
         </div>
     </div>
+<script>
 
-    <script>
-        // Get elements for refund popup
-        const refundPopup = document.getElementById('refundPopup');
-        const closeRefundPopup = document.getElementById('closeRefundPopup');
-        const refundButton = document.querySelector('.refund-request');
+//Current and Past Bookings Display
 
-        // Show refund popup on button click
-        refundButton.addEventListener('click', function () {
-            refundPopup.style.display = 'flex';  // Display the popup
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the current user's email
+    const userEmail = localStorage.getItem("email");
+
+    // Retrieve all bookings from localStorage
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+    // ----- CURRENT BOOKING -----
+    const currentBooking = bookings.find(b => b.email === userEmail && b.isCurrent === true);
+    const currentBookingContainer = document.getElementById("current-booking-info");
+    const noBookingMessage = document.getElementById("no-booking-message");
+    const cancelButton = document.getElementById("cancelButton"); // Cancel button element
+
+    // Display current booking info if a current booking exists
+    if (currentBooking) {
+        currentBookingContainer.textContent = `Subject: ${currentBooking.subject} - Date: ${currentBooking.date} - Time: ${currentBooking.time}`;
+        noBookingMessage.style.display = "none";
+        cancelButton.style.display = "block"; // Show the cancel button when there is a booking
+    } else {
+        currentBookingContainer.style.display = "none"; // Hide the current booking section
+        noBookingMessage.style.display = "block"; // Show the "no bookings" message
+        cancelButton.style.display = "none"; // Hide the cancel button when there is no booking
+    }
+
+    // ----- PAST BOOKINGS -----
+    const pastBookings = bookings.filter(b => b.email === userEmail && b.isCurrent === false);
+    const pastBookingsContainer = document.querySelector(".past-bookings .bookings");
+    const noPastBookingsMessage = document.getElementById("no-past-booking-message");
+
+    // Display past bookings if available
+    if (pastBookings.length > 0) {
+        noPastBookingsMessage.style.display = "none"; // Hide the "no past bookings" message
+        pastBookings.forEach(booking => {
+            let bookingElement = document.createElement("span");
+            bookingElement.textContent = `Subject: ${booking.subject} - Date: ${booking.date} - Time: ${booking.time}`;
+            pastBookingsContainer.appendChild(bookingElement);
         });
+    } else {
+        noPastBookingsMessage.style.display = "block"; // Show the "no past bookings" message
+    }
+});
 
-        // Close the refund popup when user clicks '×'
-        closeRefundPopup.addEventListener('click', function () {
-            refundPopup.style.display = 'none';  // Hide the popup
-        });
+//Popups
 
-        // Close refund popup when clicking outside of it
-        window.addEventListener('click', function (e) {
-            if (e.target === refundPopup) {
-                refundPopup.style.display = 'none';
-            }
-        });
+// Get elements for refund popup
+const refundPopup = document.getElementById('refundPopup');
+const closeRefundPopup = document.getElementById('closeRefundPopup');
+const refundButton = document.querySelector('.refund-request');
 
-        // Get elements for cancel popup
-        const cancelPopup = document.getElementById('cancelPopup');
-        const closeCancelPopup = document.getElementById('closeCancelPopup');
-        const cancelButton = document.getElementById('cancelButton');
+// Show refund popup on button click
+refundButton.addEventListener('click', function () {
+    refundPopup.style.display = 'flex';  // Display the popup
+});
 
-        // Show cancel popup on cancel button click
-        cancelButton.addEventListener('click', function () {
-            cancelPopup.style.display = 'flex';  // Display the popup
-        });
+// Close the refund popup when user clicks '×'
+closeRefundPopup.addEventListener('click', function () {
+    refundPopup.style.display = 'none';  // Hide the popup
+});
 
-        // Close the cancel popup when user clicks '×'
-        closeCancelPopup.addEventListener('click', function () {
-            cancelPopup.style.display = 'none';  // Hide the popup
-        });
+// Close refund popup when clicking outside of it
+window.addEventListener('click', function (e) {
+    if (e.target === refundPopup) {
+        refundPopup.style.display = 'none';
+    }
+});
 
-        // Close cancel popup when clicking outside of it
-        window.addEventListener('click', function (e) {
-            if (e.target === cancelPopup) {
-                cancelPopup.style.display = 'none';
-            }
-        });
-    </script>
+// Get elements for cancel popup
+const cancelPopup = document.getElementById('cancelPopup');
+const closeCancelPopup = document.getElementById('closeCancelPopup');
+
+// Show cancel popup on cancel button click
+cancelButton.addEventListener('click', function () {
+    cancelPopup.style.display = 'flex';  // Display the popup
+});
+
+// Close the cancel popup when user clicks '×'
+closeCancelPopup.addEventListener('click', function () {
+    cancelPopup.style.display = 'none';  // Hide the popup
+});
+
+// Close cancel popup when clicking outside of it
+window.addEventListener('click', function (e) {
+    if (e.target === cancelPopup) {
+        cancelPopup.style.display = 'none';
+    }
+});
+
+
+</script>    
 </body>
 
 </html>

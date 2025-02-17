@@ -112,15 +112,23 @@ nav ul li a:hover {
     <section class="subjects">
         <h2>PICK A SUB-SUBJECT</h2>
         <div class="subject-buttons">
-            <button class="one">Social Studies</button>
-            <button class="two">Canadian History</button>
-            <button class="three">Ancient Rome</button>
-            <button class="four">Europe Middle Ages (476 - 1500)</button>
-            <button class="five">Ancient Greece</button>
-            <button class="six">Other (Describe to Tutor)</button>
+            <button onclick="selectCourse('Social Studies')" class="one">Social Studies</button>
+            <button onclick="selectCourse('Canadian History')" class="two">Canadian History</button>
+            <button onclick="selectCourse('Ancient Rome')" class="three">Ancient Rome</button>
+            <button onclick="selectCourse('Europe Middle Ages (476 - 1500)')" class="four">Europe Middle Ages (476 - 1500)</button>
+            <button onclick="selectCourse('Ancient Greece')" class="five">Ancient Greece</button>
+            <button onclick="selectCourse('Other (Describe to Tutor)')" class="six">Other (Describe to Tutor)</button>
             <hr class="line-break">
         </div>
     </section>
+    <script>
+        function selectCourse(courseName) {
+            localStorage.setItem("selectedCourse", courseName); // Store course
+            window.location.href = "https://raveenakumar1.github.io/html/sign_up"; // Redirect to login
+        }
+
+
+    </script>
     
 </body>
 </html>

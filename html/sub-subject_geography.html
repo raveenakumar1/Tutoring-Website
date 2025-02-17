@@ -112,16 +112,24 @@ nav ul li a:hover {
     <section class="subjects">
         <h2>PICK A SUB-SUBJECT</h2>
         <div class="subject-buttons">
-            <button class="one">Social Studies (Grades 1-6)</button>
-            <button class="two">Grade 10 Canadian Geography</button>
-            <button class="three">Forces of Nature</button>
-            <button class="four">Human Geography</button>
-            <button class="five">Canadian Geography (Grades 7-8)</button>
-            <button class="six">Physical Geography</button>
-            <button class="seven">Grade 9 Canadian Geography</button>
-            <button class="eight">Canadian Geography (Grades 11-12)</button>
+            <button onclick="selectCourse('Social Studies (Grades 1-6)')" class="one">Social Studies (Grades 1-6)</button>
+            <button onclick="selectCourse('Grade 10 Canadian Geography')" class="two">Grade 10 Canadian Geography</button>
+            <button onclick="selectCourse('Forces of Nature')" class="three">Forces of Nature</button>
+            <button onclick="selectCourse('Human Geography')" class="four">Human Geography</button>
+            <button onclick="selectCourse('Canadian Geography (7-8)')" class="five">Canadian Geography (Grades 7-8)</button>
+            <button onclick="selectCourse('Physical Geography')" class="six">Physical Geography</button>
+            <button onclick="selectCourse('Grade 9 Canadian Geography')" class="seven">Grade 9 Canadian Geography</button>
+            <button onclick="selectCourse('Canadian Geography')" class="eight">Canadian Geography (Grades 11-12)</button>
             <hr class="line-break">
         </div>
     </section>
+    <script>
+        function selectCourse(courseName) {
+            localStorage.setItem("selectedCourse", courseName); // Store course
+            window.location.href = "https://raveenakumar1.github.io/html/sign_up"; // Redirect to login
+        }
+
+
+    </script>
 </body>
 </html>
