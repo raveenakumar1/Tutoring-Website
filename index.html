@@ -6,24 +6,25 @@
     <title>Home</title>
 
 <style>
-    /* reset default browser styles */
+/* reset default browser styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* set a consistent background color */
+/* body background */
 body {
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #1b1b3a;
+    color: #fff;
     text-align: center;
     padding: 20px;
 }
 
+/* header styling */
 header {
-    background-color: #007bff;
+    background-color: #2c2c54;
     padding: 15px 0;
 }
 
@@ -32,10 +33,6 @@ nav ul {
     display: flex;
     justify-content: center;
     gap: 20px;
-}
-
-nav ul li {
-    display: inline;
 }
 
 nav ul li a {
@@ -48,28 +45,49 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #0056b3;
+    background-color: #ff4d6d;
     border-radius: 5px;
 }
 
+/* Welcome Section */
 .welcome-screen {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     padding: 50px 20px;
 }
 
 .left-side {
-    width: 50%;
+    width: 45%;
     text-align: left;
-    padding: 20px;
 }
 
 .right-side img {
-    width: 300px;
+    width: 350px;
     height: auto;
 }
 
+/* Why Choose Me Section */
+.why-choose-me {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    gap: 20px;
+}
+
+.why-choose-me .text {
+    width: 50%;
+    text-align: left;
+}
+
+.why-choose-me .image img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Subject Section */
 .subject-section h2 {
     margin-bottom: 15px;
 }
@@ -82,7 +100,7 @@ nav ul li a:hover {
 }
 
 .subject-buttons button {
-    background-color: #28a745;
+    background-color: #ff4d6d;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -93,22 +111,23 @@ nav ul li a:hover {
 }
 
 .subject-buttons button:hover {
-    background-color: #218838;
+    background-color: #c0392b;
 }
 
-/* line break for separation */
+/* Line Break */
 .line-break {
     width: 50%;
     height: 2px;
-    background-color: black;
+    background-color: white;
     margin: 20px auto;
 }
 
+/* FAQ Section */
 .faq {
     display: flex;
     justify-content: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #2c2c54;
 }
 
 .faq .left-side {
@@ -121,7 +140,7 @@ nav ul li a:hover {
 }
 
 .faq-item {
-    background-color: #f1f1f1;
+    background-color: #3a3a6a;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 10px;
@@ -131,22 +150,24 @@ nav ul li a:hover {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    color: #ff4d6d;
 }
 
 .faq-item p {
     margin-top: 10px;
 }
 
+/* Footer */
 footer {
     margin-top: 50px;
     padding: 20px;
-    background-color: #343a40;
+    background-color: #2c2c54;
     color: white;
 }
 
 .consultation-btn {
-    background-color: #ffc107;
-    color: black;
+    background-color: #ff4d6d;
+    color: white;
     border: none;
     padding: 12px 20px;
     font-size: 18px;
@@ -156,7 +177,7 @@ footer {
 }
 
 .consultation-btn:hover {
-    background-color: #e0a800;
+    background-color: #c0392b;
 }
 
 
@@ -215,7 +236,7 @@ footer {
             <a href="https://raveenakumar1.github.io/html/learn_more"><button class="learn-more">Learn More</button></a>
         </div>
         <div class="normal-pingy">
-            <img src="https://raveenakumar1.github.io/html/normal-pingy.png" alt="Normal Pingy">
+            <img src="https://raveenakumar1.github.io/images/normal-pingy.png" alt="Normal Pingy">
         </div>
     </section>
     
